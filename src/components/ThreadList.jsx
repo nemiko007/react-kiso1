@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export const ThreadList = () => {
     const [threads, setThreads] = useState([]);
@@ -48,9 +49,10 @@ export const ThreadList = () => {
             <h2 className="text-xl font-bold mb-6 text-slate-700">新着スレッド</h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {threads.map((thread) => (
-                    <div
+                    <Link
                         key={thread.id}
-                        className="group relative bg-white rounded-xl shadow-sm border border-slate-200 p-5 hover:shadow-md hover:border-slate-300 transition-all duration-200 cursor-pointer"
+                        to={`/threads/${thread.id}`}
+                        className="group block bg-white rounded-xl shadow-sm border border-slate-200 p-5 hover:shadow-md hover:border-slate-300 transition-all duration-200"
                     >
                         <div className="flex flex-col h-full">
                             <h3 className="text-lg font-semibold text-slate-800 group-hover:text-blue-600 transition-colors line-clamp-2">
@@ -62,7 +64,7 @@ export const ThreadList = () => {
                                 </span>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
             {threads.length === 0 && (
